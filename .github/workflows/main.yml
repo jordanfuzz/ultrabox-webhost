@@ -11,7 +11,9 @@ jobs:
     steps:
       - name: checkout
         uses: actions/checkout@v3
+      - name: stop and remove existing container
+        run: docker stop ultrabox-webhost && docker rm --force ultrabox-webhost || true
       - name: build
-        run: docker build -t ultrabox-webhost .
+        run: docker build --no-cache -t ultrabox-webhost .
       - name: start nginx
         run: docker run -dp 80:80 --rm --name ultrabox-webhost ultrabox-webhost
