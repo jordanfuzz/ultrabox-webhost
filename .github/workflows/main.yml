@@ -1,16 +1,15 @@
 on:
   push:
     branches:
-      - main
+      - master
   repository_dispatch:
     types: [default]
 jobs:
   deploy:
     name: deploy
-    environment: prod
     runs-on: self-hosted
     steps:
       - name: build
         run: docker build -t ultrabox-webhost .
       - name: start nginx
-        run: docker run -dp 80:80 ultrabox-webhost
+        run: docker run -dp 80:80 --name ultrabox-webhost ultrabox-webhost
