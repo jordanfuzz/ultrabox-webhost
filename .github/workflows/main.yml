@@ -14,4 +14,4 @@ jobs:
       - name: build
         run: docker build -t ultrabox-webhost .
       - name: start nginx
-        run: docker run -dp 80:80 --name ultrabox-webhost ultrabox-webhost
+        run: docker run -dp 80:80 --rm --name ultrabox-webhost ultrabox-webhost
